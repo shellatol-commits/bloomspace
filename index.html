@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>BloomSpace</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+  <div class="app-shell">
+
+    <!-- MOBILE OVERLAY -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+      <div class="brand">
+        <div class="brand-flower">✿</div>
+
+        <div>
+          <div class="brand-name">BloomSpace</div>
+          <div class="brand-subtitle">your little corner to grow</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+
+        <button class="nav-item active" data-page="home">
+          <span>⌂</span>
+          <span>Home</span>
+        </button>
+
+        <button class="nav-item" data-page="tasks">
+          <span>✓</span>
+          <span>Tasks</span>
+        </button>
+
+        <button class="nav-item" data-page="subjects">
+          <span>✦</span>
+          <span>Subjects</span>
+        </button>
+
+        <button class="nav-item" data-page="focus">
+          <span>◷</span>
+          <span>Focus</span>
+        </button>
+
+        <button class="nav-item" data-page="notes">
+          <span>✎</span>
+          <span>Notes</span>
+        </button>
+
+        <button class="nav-item" data-page="progress">
+          <span>↗</span>
+          <span>Progress</span>
+        </button>
+
+      </nav>
+
+      <div class="sidebar-bottom">
+
+        <button class="nav-item" data-page="settings">
+          <span>⚙</span>
+          <span>Settings</span>
+        </button>
+
+        <div class="profile-mini" id="profileMini">
+          <div class="avatar" id="sidebarAvatar">🌸</div>
+
+          <div class="profile-mini-text">
+            <strong id="sidebarUsername">Guest</strong>
+            <span id="sidebarStatus">Not signed in</span>
+          </div>
+
+          <button
+            class="logout-small"
+            id="logoutButton"
+            title="Log out"
+          >
+            ↪
+          </button>
+        </div>
+
+      </div>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <!-- TOPBAR -->
+      <header class="topbar">
+
+        <button class="mobile-menu" id="mobileMenu">
+          ☰
+        </button>
+
+        <div class="topbar-title">
+          <span id="pageEyebrow">BloomSpace</span>
+          <h1 id="pageTitle">Good morning 🌷</h1>
+        </div>
+
+        <div class="topbar-actions">
+
+          <div class="streak-pill">
+            <span>🔥</span>
+            <strong id="topStreak">0</strong>
+            <span>day streak</span>
+          </div>
+
+          <button class="icon-button" id="quickAddButton">
+            +
+          </button>
+
+        </div>
+
+      </header>
+
+      <!-- CONTENT -->
+      <div class="content">
+
+        <!-- HOME -->
+        <section class="page active" id="page-home">
+
+          <div class="welcome-card">
+
+            <div class="welcome-copy">
+              <span class="soft-label">A fresh little start</span>
+
+              <h2>
+                Make today
+                <em>beautiful.</em>
+              </h2>
+
+              <p>
+                Tiny steps still count. Pick something meaningful
+                and let yourself bloom.
+              </p>
+
+              <button class="primary-button" data-page="tasks">
+                View today's tasks
+                <span>→</span>
+              </button>
+            </div>
+
+            <div class="welcome-art">
+              <div class="sun"></div>
+
+              <div class="hill hill-one"></div>
+              <div class="hill hill-two"></div>
+
+              <div class="flower flower-one">✿</div>
+              <div class="flower flower-two">✿</div>
+              <div class="flower flower-three">✿</div>
+
+              <div class="sparkle sparkle-one">✦</div>
+              <div class="sparkle sparkle-two">✧</div>
+              <div class="sparkle sparkle-three">·</div>
+            </div>
+
+          </div>
+
+          <div class="stats-grid">
+
+            <div class="stat-card">
+              <div class="stat-icon pink">✓</div>
+              <div>
+                <span>Tasks done</span>
+                <strong id="homeTasksDone">0</strong>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon purple">◷</div>
+              <div>
+                <span>Focus minutes</span>
+                <strong id="homeFocusMinutes">0</strong>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon green">🔥</div>
+              <div>
+                <span>Current streak</span>
+                <strong id="homeStreak">0 days</strong>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon peach">✦</div>
+              <div>
+                <span>XP earned</span>
+                <strong id="homeXP">0</strong>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="home-columns">
+
+            <div class="panel today-panel">
+
+              <div class="panel-header">
+                <div>
+                  <span class="section-label">Today</span>
+                  <h3>Your tasks</h3>
+                </div>
+
+                <button class="text-button" data-page="tasks">
+                  See all →
+                </button>
+              </div>
+
+              <div id="homeTaskList" class="compact-task-list">
+                <div class="empty-state">
+                  <div>🌱</div>
+                  <p>No tasks yet.</p>
+                  <span>Add something small to get started.</span>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="panel progress-panel">
+
+              <div class="panel-header">
+                <div>
+                  <span class="section-label">Your growth</span>
+                  <h3>Progress</h3>
+                </div>
+
+                <button class="text-button" data-page="progress">
+                  Details →
+                </button>
+              </div>
+
+              <div class="progress-ring-wrap">
+                <div class="progress-ring" id="homeProgressRing">
+                  <div>
+                    <strong id="homeProgressPercent">0%</strong>
+                    <span>complete</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="progress-summary">
+                <span>Keep going — you're doing great.</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- TASKS -->
+        <section class="page" id="page-tasks">
+
+          <div class="page-heading">
+            <div>
+              <span class="section-label">Little wins</span>
+              <h2>Tasks</h2>
+              <p>Turn your plans into tiny, doable steps.</p>
+            </div>
+
+            <button class="primary-button" id="addTaskButton">
+              + Add task
+            </button>
+          </div>
+
+          <div class="filter-row">
+
+            <button class="filter-button active" data-task-filter="all">
+              All
+            </button>
+
+            <button class="filter-button" data-task-filter="active">
+              Active
+            </button>
+
+            <button class="filter-button" data-task-filter="completed">
+              Completed
+            </button>
+
+          </div>
+
+          <div class="tasks-layout">
+
+            <div class="panel task-list-panel">
+              <div id="taskList" class="task-list"></div>
+            </div>
+
+            <aside class="panel task-summary">
+
+              <span class="section-label">Today</span>
+              <h3>A little overview</h3>
+
+              <div class="summary-number" id="taskSummaryNumber">
+                0
+              </div>
+
+              <p>
+                tasks waiting for you.
+              </p>
+
+              <div class="mini-progress">
+                <div id="taskMiniProgress"></div>
+              </div>
+
+              <span id="taskMiniProgressText">
+                0% complete
+              </span>
+
+            </aside>
+
+          </div>
+
+        </section>
+
+        <!-- SUBJECTS -->
+        <section class="page" id="page-subjects">
+
+          <div class="page-heading">
+            <div>
+              <span class="section-label">Keep learning</span>
+              <h2>Subjects</h2>
+              <p>Organize the things you're growing your brain with.</p>
+            </div>
+
+            <button class="primary-button" id="addSubjectButton">
+              + Add subject
+            </button>
+          </div>
+
+          <div id="subjectGrid" class="subject-grid"></div>
+
+        </section>
+
+        <!-- FOCUS -->
+        <section class="page" id="page-focus">
+
+          <div class="focus-layout">
+
+            <div class="panel focus-card">
+
+              <span class="section-label">Deep work</span>
+              <h2>Focus time</h2>
+
+              <p class="focus-description">
+                Put the world on pause for a little while.
+              </p>
+
+              <div class="timer">
+
+                <div class="timer-circle">
+                  <div>
+                    <span id="timerLabel">Focus</span>
+                    <strong id="timerDisplay">25:00</strong>
+                                  <span id="timerStatus">Ready when you are</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="timer-presets">
+
+                <button class="timer-preset active" data-minutes="25">
+                  25 min
+                </button>
+
+                <button class="timer-preset" data-minutes="15">
+                  15 min
+                </button>
+
+                <button class="timer-preset" data-minutes="5">
+                  5 min
+                </button>
+
+              </div>
+
+              <div class="timer-controls">
+
+                <button class="primary-button" id="timerStart">
+                  Start focus
+                </button>
+
+                <button class="secondary-button" id="timerReset">
+                  Reset
+                </button>
+
+              </div>
+
+            </div>
+
+            <div class="focus-side">
+
+              <div class="panel focus-tip">
+                <span class="section-label">Gentle reminder</span>
+                <h3>You don't need to do everything.</h3>
+                <p>
+                  One focused session is already a win.
+                  Take a breath, choose one thing, and begin.
+                </p>
+              </div>
+
+              <div class="panel focus-stats">
+
+                <span class="section-label">Your focus</span>
+
+                <div class="focus-stat-row">
+                  <span>Total minutes</span>
+                  <strong id="focusTotalMinutes">0</strong>
+                </div>
+
+                <div class="focus-stat-row">
+                  <span>Sessions</span>
+                  <strong id="focusSessionCount">0</strong>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- NOTES -->
+        <section class="page" id="page-notes">
+
+          <div class="page-heading">
+            <div>
+              <span class="section-label">Thought garden</span>
+              <h2>Notes</h2>
+              <p>Keep ideas, reflections, and little reminders.</p>
+            </div>
+
+            <button class="primary-button" id="newNoteButton">
+              + New note
+            </button>
+          </div>
+
+          <div class="notes-layout">
+
+            <div class="panel notes-list-panel">
+              <div id="notesList" class="notes-list"></div>
+            </div>
+
+            <div class="panel note-editor">
+
+              <input
+                type="text"
+                id="noteTitle"
+                class="note-title-input"
+                placeholder="Untitled note"
+              >
+
+              <textarea
+                id="noteContent"
+                placeholder="Start writing..."
+              ></textarea>
+
+              <div class="note-editor-footer">
+
+                <span id="noteSaveStatus">
+                  Select a note
+                </span>
+
+                <button
+                  class="primary-button small"
+                  id="saveNoteButton"
+                >
+                  Save note
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- PROGRESS -->
+        <section class="page" id="page-progress">
+
+          <div class="page-heading">
+            <div>
+              <span class="section-label">Look how far you've come</span>
+              <h2>Progress</h2>
+              <p>Growth doesn't have to be loud to be real.</p>
+            </div>
+          </div>
+
+          <div class="progress-dashboard">
+
+            <div class="panel level-card">
+
+              <span class="section-label">Current level</span>
+
+              <div class="level-number" id="levelNumber">
+                1
+              </div>
+
+              <h3 id="levelTitle">Seedling</h3>
+
+              <div class="xp-bar">
+                <div id="xpBar"></div>
+              </div>
+
+              <div class="xp-labels">
+                <span id="currentXP">0 XP</span>
+                <span id="nextLevelXP">100 XP</span>
+              </div>
+
+            </div>
+
+            <div class="panel progress-stat-card">
+
+              <div class="big-stat">
+                <span>🔥</span>
+                <strong id="progressStreak">0</strong>
+              </div>
+
+              <span>Day streak</span>
+            </div>
+
+            <div class="panel progress-stat-card">
+
+              <div class="big-stat">
+                <span>✓</span>
+                <strong id="progressTasks">0</strong>
+              </div>
+
+              <span>Tasks completed</span>
+            </div>
+
+            <div class="panel progress-stat-card">
+
+              <div class="big-stat">
+                <span>◷</span>
+                <strong id="progressFocus">0</strong>
+              </div>
+
+              <span>Focus minutes</span>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- SETTINGS -->
+        <section class="page" id="page-settings">
+
+          <div class="page-heading">
+            <div>
+              <span class="section-label">Make it yours</span>
+              <h2>Settings</h2>
+              <p>Personalize your BloomSpace.</p>
+            </div>
+          </div>
+
+          <div class="settings-grid">
+
+            <div class="panel settings-card">
+
+              <span class="section-label">Profile</span>
+
+              <label>
+                Display name
+                <input
+                  type="text"
+                  id="settingsUsername"
+                  placeholder="Your name"
+                >
+              </label>
+
+              <label>
+                Avatar
+                <select id="settingsAvatar">
+                  <option value="🌸">🌸 Flower</option>
+                  <option value="🌱">🌱 Sprout</option>
+                  <option value="🌻">🌻 Sunflower</option>
+                  <option value="🌷">🌷 Tulip</option>
+                  <option value="🪻">🪻 Lavender</option>
+                  <option value="🍓">🍓 Strawberry</option>
+                  <option value="🌙">🌙 Moon</option>
+                </select>
+              </label>
+
+              <button class="primary-button" id="saveProfileButton">
+                Save profile
+              </button>
+
+            </div>
+
+            <div class="panel settings-card">
+
+              <span class="section-label">Theme</span>
+
+              <div class="theme-options">
+
+                <button class="theme-option" data-theme="rose">
+                  <span></span>
+                  Rose
+                </button>
+
+                <button class="theme-option" data-theme="lavender">
+                  <span></span>
+                  Lavender
+                </button>
+
+                <button class="theme-option" data-theme="sage">
+                  <span></span>
+                  Sage
+                </button>
+
+                <button class="theme-option" data-theme="peach">
+                  <span></span>
+                  Peach
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- AUTH MODAL -->
+  <div class="modal-backdrop hidden" id="authModal">
+
+    <div class="modal auth-modal">
+
+      <button class="modal-close" id="authClose">
+        ×
+      </button>
+
+      <div class="auth-flower">✿</div>
+
+      <span class="section-label">Welcome to BloomSpace</span>
+
+      <h2 id="authTitle">Come on in 🌷</h2>
+
+      <p id="authSubtitle">
+        Sign in to keep your little garden of progress safe.
+      </p>
+
+      <form id="authForm">
+
+        <label>
+          Email
+          <input
+            type="email"
+            id="authEmail"
+            required
+            autocomplete="email"
+          >
+        </label>
+
+        <label>
+          Password
+          <input
+            type="password"
+            id="authPassword"
+            required
+            autocomplete="current-password"
+          >
+        </label>
+
+        <button
+          type="submit"
+          class="primary-button full"
+          id="authSubmit"
+        >
+          Sign in
+        </button>
+
+      </form>
+
+      <button class="auth-switch" id="authSwitch">
+        Need an account? Sign up
+      </button>
+
+      <div class="auth-divider">
+        <span>or</span>
+      </div>
+
+      <button class="secondary-button full" id="guestButton">
+        Continue as guest
+      </button>
+
+      <p class="auth-error" id="authError"></p>
+
+    </div>
+
+  </div>
+
+  <!-- QUICK ADD MODAL -->
+  <div class="modal-backdrop hidden" id="taskModal">
+
+    <div class="modal">
+
+      <button class="modal-close" id="taskModalClose">
+        ×
+      </button>
+
+      <span class="section-label">Tiny step</span>
+
+      <h2>Add a task</h2>
+
+      <form id="taskForm">
+
+        <label>
+          Task
+          <input
+            type="text"
+            id="taskTitle"
+            placeholder="What would you like to do?"
+            required
+          >
+        </label>
+
+        <label>
+          Subject
+          <select id="taskSubject">
+            <option value="">No subject</option>
+          </select>
+        </label>
+
+        <label>
+          Due date
+          <input type="date" id="taskDueDate">
+        </label>
+
+        <button type="submit" class="primary-button full">
+          Add task
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  <!-- SUBJECT MODAL -->
+  <div class="modal-backdrop hidden" id="subjectModal">
+
+    <div class="modal">
+
+      <button class="modal-close" id="subjectModalClose">
+        ×
+      </button>
+
+      <span class="section-label">New learning space</span>
+
+      <h2>Add a subject</h2>
+
+      <form id="subjectForm">
+
+        <label>
+          Subject name
+          <input
+            type="text"
+            id="subjectName"
+            placeholder="e.g. Mathematics"
+            required
+          >
+        </label>
+
+        <label>
+          Icon
+          <select id="subjectIcon">
+            <option>📚</option>
+            <option>🧮</option>
+            <option>🔬</option>
+            <option>🎨</option>
+            <option>💻</option>
+            <option>🌍</option>
+            <option>📖</option>
+            <option>🎵</option>
+          </select>
+        </label>
+
+        <button type="submit" class="primary-button full">
+          Create subject
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  <div class="toast hidden" id="toast"></div>
+
+  <script src="./script.js"></script>
+
+</body>
+</html>
